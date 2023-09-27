@@ -1,58 +1,43 @@
-const express = require('express');
+const express = require('express'); // importing express package
 
-const app = express();
-const PORT = 5001;
+const artistListArray = require('./modules/artist.js'); // importing from modules folder
+const songListArray = require('./modules/song.js'); // importing from modules folder
 
-const artistListArray = [
-    {
-        name: 'Miles Davis',
-        born: 1926,
-        died: 1990,
-    },
-    {
-        name: 'Duke Ellington',
-        born: 1899,
-        died: 1974,
-    },
-    {
-        name: 'John Coltrane',
-        born: 1926,
-        died: 1987,
-    },
-    {
-        name: 'Louis Daniel Armstrong',
-        born: 1901,
-        died: 1971,
-    },
-];
+const app = express(); // creating app
+const PORT = 5001; // defining port
 
-const songListArray = [
-    {
-        title: 'Take Five',
-        artist: 'The Dave Brubeck Quartet',
-    },
-    {
-        title: 'So What',
-        artist: 'Miles Davis',
-    },
-    {
-        title: 'Sing Sing Sing',
-        artist: 'Benny Goodman',
-    },
-    {
-        title: 'Take the "A" Train',
-        artist: 'The Dave Brubeck Quartet',
-    },
-];
 
-app.use(express.static('server/public'));
+app.use(express.json()); // for POST requests 
 
+app.use(express.static('server/public')); // limiting access
+
+// GET for artists
 app.get('/artist', (req, res) => {
     res.send(artistListArray);
 });
 
 // TODO - Add GET for songs
 
+// GET for songs
+app.get('/song', (req,res) => {
+    res.send(songListArray);
+})
+
+// POST for artists via the form
+app.post('/artist', (req,res) => {
+    console.log(req.body);
+    artistListArray.push(req.body);
+    res.sendStatus(201);
+})
+
+// POST for songs via the form
+app.post('/song', (req,res) => {
+    console.log(req.body);
+    songListArray.push(req.body);
+    res.sendStatus(201);
+})
+
+// Starting node
 app.listen(PORT, () => {
     console.log('listening on port', PORT)
 });

@@ -4,10 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Get Jazzy Axios</title>    
+    <title>Get Jazzy Axios</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico"> <!-- added favicon because I hate errors -->
 </head>
 <body>
     <h1>Get Jazzy Axios</h1>
+    <div>
+        <!-- Form to add an artist to DOM -->
+        <form onSubmit="addArtist(event)">
+            Artist Name:<input id="artist-name" />
+            <br/>
+            Artist Birth Year:<input id="artist-birth" />
+            <br/>
+            Artist Death Year<input id="artist-death" />
+            <br/>
+            <button>Submit</button>
+        </form>
+    </div>
 
     <h2>Famous Jazz Artists</h2>
     <table>
@@ -18,10 +31,22 @@
                 <th>Died</th>
             </tr>
         </thead>
-        <tbody id="artistTableBody"></tbody>
+        <tbody id="artistTableBody">
+            <!-- Artists displayed here -->
+        </tbody>
     </table>
 
     <h2>Famous Jazz Songs</h2>
+    <div>
+        <!-- form to add song to DOM -->
+        <form onSubmit="addSong(event)">
+            Title:<input id="song-name" />
+            <br/>
+            Artist:<input id="song-artist" />
+            <br/>
+            <button>Submit</button>
+        </form>
+    </div>
     <table>
         <thead>
             <tr>
@@ -29,7 +54,9 @@
                 <th>Artist</th>
             </tr>
         </thead>
-        <tbody id="songTableBody"></tbody>
+        <tbody id="songTableBody">
+            <!-- songs displayed here -->
+        </tbody>
     </table>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="client.js"></script>
